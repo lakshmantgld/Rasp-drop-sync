@@ -1,9 +1,6 @@
 #!/usr/bin/python
-# 
-#
-#
-#
-#
+# Change the directories
+
 
 
 from __future__ import division
@@ -11,6 +8,8 @@ import os
 import dropbox
 import yaml
 
+# this path performs the oauth token verification and getting the list of folders in dropbox
+# change the path to config.yml file
 with open("/Users/lakshman/entaag/lddroprasp/config.yml", "r") as fd:
     info = yaml.load(fd)
 try:
@@ -27,10 +26,10 @@ try:
 except:
     print " error in access token and listing files from dropbox"
 
-# print(list_of_directories)
-
+# change the path to the directory you want to sync. Change directories everywhere.
 os.chdir("/Users/lakshman/entaag/raspsync")
 
+# Following performs the real computation as specified in the README.
 for directory in list_of_directories:
     print(directory)
     if not os.path.exists("/Users/lakshman/entaag/raspsync/" + directory):
@@ -63,9 +62,6 @@ for directory in list_of_directories:
                         total += 4096
                         print("percentage completed:")
                         print (int(((total/int(metadata.size)) * 100)))
-            # print("the request object is ")
-            # print(req.content)
-            # req.read(4096);
                     if deletion_list:
                         print("files to be deleted:")
                         print(deletion_list)
